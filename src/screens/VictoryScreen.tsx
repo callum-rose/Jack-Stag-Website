@@ -16,7 +16,7 @@ import { Screen } from '../components/ui/Screen';
 import { Stat } from '../components/ui/Stat';
 
 export function VictoryScreen() {
-  const { state } = useGame();
+  const { state, dispatch } = useGame();
   // Finish time is fixed, so compute against finishedAt (totalTimeMs uses it).
   const now = state.finishedAt ?? Date.now();
 
@@ -49,6 +49,12 @@ export function VictoryScreen() {
           </BigButton>
           <div className="link-row">
             <Link to="/stats">Full stats</Link>
+            <button
+              className="link-button"
+              onClick={() => dispatch({ type: 'RESUME_HUNT' })}
+            >
+              Resume hunt
+            </button>
           </div>
         </>
       }
@@ -59,16 +65,6 @@ export function VictoryScreen() {
         <Stat
           value={formatDistance(approxDistanceM(state))}
           label="Approx distance"
-        />
-        <Stat
-          value={
-            state.breadcrumbs.length > 0
-              ? `±${Math.round(
-                  state.breadcrumbs[state.breadcrumbs.length - 1].acc ?? 0,
-                )}m`
-              : '—'
-          }
-          label="Last GPS accuracy"
         />
       </div>
 

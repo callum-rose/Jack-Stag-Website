@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { GameProvider, useGame } from './state/GameContext';
 import { PHASE_EXEMPT_ROUTES, routeForPhase } from './state/routes';
+import { AppHeader } from './components/ui/AppHeader';
 import { SetupScreen } from './screens/SetupScreen';
 import { ReadyScreen } from './screens/ReadyScreen';
 import { HuntScreen } from './screens/HuntScreen';
@@ -43,6 +44,7 @@ function AppRoutes() {
   return (
     <>
       <PhaseGate />
+      <AppHeader />
       {/* Keyed wrapper replays the enter animation on every route change.
           The animation reverts to no transform at rest, so it never becomes a
           containing block for the fixed-position dialogs the screens render. */}
