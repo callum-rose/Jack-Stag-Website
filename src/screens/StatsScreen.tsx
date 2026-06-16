@@ -76,9 +76,7 @@ export function StatsScreen() {
           value={formatDistance(approxDistanceM(state))}
           label={copy.statLabels.approxDistance}
         />
-        <Stat value={String(state.breadcrumbs.length)} label={copy.statLabels.gpsSamples} />
       </div>
-      <p className="muted">{copy.stats.distanceDisclaimer}</p>
 
       {timeline.length > 0 && (
         <div>
