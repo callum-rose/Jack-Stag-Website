@@ -63,7 +63,7 @@ export function ArrivalScreen() {
             Get Directions
           </BigButton>
           <BigButton variant="success" onClick={confirm}>
-            We've arrived
+            We've Arrived
           </BigButton>
         </>
       )}
