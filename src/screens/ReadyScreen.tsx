@@ -5,7 +5,7 @@ import { BigButton } from '../components/ui/BigButton';
 import { Screen } from '../components/ui/Screen';
 
 export function ReadyScreen() {
-  const { state, dispatch } = useGame();
+  const { dispatch } = useGame();
   const { sample } = useGeolocation();
 
   const start = async () => {
@@ -17,7 +17,6 @@ export function ReadyScreen() {
   return (
     <Screen
       title={copy.ready.heading}
-      subtitle={state.team ? `Team: ${state.team.name}` : undefined}
       footer={
         <BigButton variant="success" onClick={start}>
           {copy.ready.cta}
