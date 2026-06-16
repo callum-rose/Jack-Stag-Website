@@ -9,7 +9,6 @@ import {
   completedVisits,
   progressTimeline,
   totalTimeMs,
-  visitedPubIds,
 } from '../state/selectors';
 import { clearState } from '../state/persistence';
 import { formatDistance } from '../lib/geo';
@@ -17,7 +16,7 @@ import { formatClock, formatDuration } from '../lib/time';
 import { buildShareText } from '../lib/summary';
 import { BigButton } from '../components/ui/BigButton';
 import { ConfirmDialog } from '../components/ui/ConfirmDialog';
-import { HuntMap } from '../components/Map/HuntMap';
+import { RouteMap } from '../components/Map/RouteMap';
 import { Screen } from '../components/ui/Screen';
 import { Stat } from '../components/ui/Stat';
 
@@ -38,7 +37,14 @@ export function StatsScreen() {
   }, [finished]);
 
   const visits = useMemo(() => completedVisits(state), [state]);
-  const visited = useMemo(() => visitedPubIds(state), [state]);
+  // Visited pubs resolved to coordinates, in arrival order — the team's route.
+  const route = useMemo(
+    () =>
+      visits
+        .map((v) => pubs.find((p) => p.id === v.pubId))
+        .filter((p): p is (typeof pubs)[number] => p !== undefined),
+    [visits],
+  );
   const progress = useMemo(() => challengeProgress(state), [state]);
   const timeline = useMemo(() => progressTimeline(state), [state]);
   const [confirmReset, setConfirmReset] = useState(false);
@@ -133,14 +139,11 @@ export function StatsScreen() {
       {state.startedAt !== null && (
         <div>
           <h2>{copy.stats.pubsInOrderHeading}</h2>
-          <div className="map-wrap">
-            <HuntMap
-              pubs={pubs}
-              visitedIds={visited}
-              last={state.geo.last}
-              crumbs={state.breadcrumbs}
-            />
-          </div>
+          {route.length > 0 && (
+            <div className="route-map-wrap">
+              <RouteMap route={route} crumbs={state.breadcrumbs} />
+            </div>
+          )}
 
           {timeline.length > 0 && (
             <ol className="timeline">
