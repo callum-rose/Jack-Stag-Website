@@ -47,10 +47,10 @@ export function ArrivalScreen() {
   return (
     <Screen
       title={pending?.name ?? copy.arrival.heading}
-      subtitle={pending?.phonetic}
+      subtitle={pending?.phonetic ? <em>[{pending.phonetic}]</em> : undefined}
       footer={
         <BigButton
-          variant="ghost"
+          variant="primary"
           onClick={() => dispatch({ type: 'CANCEL_ARRIVAL' })}
         >
           Back to all pubs
@@ -60,7 +60,7 @@ export function ArrivalScreen() {
       {pending && (
         <>
           <BigButton variant="secondary" onClick={openDirections}>
-            Directions
+            Get Directions
           </BigButton>
           <BigButton variant="success" onClick={confirm}>
             We've arrived
