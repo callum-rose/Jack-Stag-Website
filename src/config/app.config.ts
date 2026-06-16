@@ -57,7 +57,7 @@ export const copy = {
     ready: {
         heading: 'Ready to hunt?',
         body: "Tap Ready to start the clock. Give your location when asked.",
-        cta: "Let\'s go!",
+        cta: "Ready!",
     },
     hunt: {
         heading: 'Where to next?',
@@ -70,7 +70,7 @@ export const copy = {
         foundConfirmCancel: 'Not yet',
     },
     arrival: {
-        heading: 'Arrived at a pub?',
+        heading: 'Arrived?',
         suggestPrefix: 'Looks like you might be at',
         noSuggestion: 'Pick the pub you have arrived at:',
         confirmCta: 'Yes, search here',
@@ -150,7 +150,7 @@ export const copy = {
     },
 
     rules: [
-        'Jack is hiding in one pub of the pubs on the list.',
+        'Jack is hiding in one of the pubs on the list.',
         'Don\'t press Ready until everyone is ready.',
         'First, we\'ll complete the first challenge.',
         'Jack judges challenges over WhatsApp.',
