@@ -89,6 +89,9 @@ export const copy = {
     completedCta: 'Challenge completed',
     noneLeft:
       "You've done every challenge — nice work. Keep hunting, no challenge this round.",
+    approvalConfirm: 'Confirm that Jack has approved this?',
+    approvalConfirmCta: 'Yes',
+    approvalCancel: 'No',
   },
   alreadySearched: {
     heading: 'Already searched',
