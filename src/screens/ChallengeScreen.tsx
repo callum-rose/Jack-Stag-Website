@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { copy } from '../config/app.config';
 import { challenges, pubs } from '../config/data';
 import { useGame } from '../state/GameContext';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { BigButton } from '../components/ui/BigButton';
+import { ConfirmDialog } from '../components/ui/ConfirmDialog';
 import { Screen } from '../components/ui/Screen';
 
 export function ChallengeScreen() {
   const { state, dispatch } = useGame();
   const { sample } = useGeolocation();
+  const [confirming, setConfirming] = useState(false);
 
   // A challenge comes either from the open pub visit (the last one without a
   // completion stamp) or, before any pub, from the opening "intro" challenge.
@@ -31,7 +34,7 @@ export function ChallengeScreen() {
       title={copy.challenge.heading}
       subtitle={pub ? `At ${pub.name}` : copy.challenge.introSubtitle}
       footer={
-        <BigButton variant="success" onClick={complete}>
+        <BigButton variant="success" onClick={() => setConfirming(true)}>
           {copy.challenge.completedCta}
         </BigButton>
       }
@@ -43,6 +46,15 @@ export function ChallengeScreen() {
         </>
       ) : (
         <p className="notice">{copy.challenge.noneLeft}</p>
+      )}
+      {confirming && (
+        <ConfirmDialog
+          message={copy.challenge.approvalConfirm}
+          confirmLabel={copy.challenge.approvalConfirmCta}
+          cancelLabel={copy.challenge.approvalCancel}
+          onConfirm={complete}
+          onCancel={() => setConfirming(false)}
+        />
       )}
     </Screen>
   );
