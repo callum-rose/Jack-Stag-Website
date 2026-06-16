@@ -42,7 +42,6 @@ export const copy = {
     heading: 'Name your team',
     placeholder: 'e.g. The Liver Birds',
     cta: 'Continue',
-    organiserLink: 'Organiser',
   },
   ready: {
     heading: 'Ready to hunt?',
@@ -85,6 +84,7 @@ export const copy = {
     shareCta: 'Share result',
     shareCopied: 'Copied to clipboard',
     statsLink: 'Full stats',
+    resumeHuntCta: 'Resume hunt',
     routeHeading: 'Your route',
   },
   stats: {
@@ -119,7 +119,6 @@ export const copy = {
     totalTime: 'Total time',
     pubsSearched: 'Pubs searched',
     approxDistance: 'Approx distance',
-    gpsAccuracy: 'Last GPS accuracy',
     gpsSamples: 'GPS samples',
   },
 
