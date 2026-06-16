@@ -41,6 +41,30 @@ button {
   font-family: inherit;
 }
 
+/* ---- Screen transition ---- */
+/* Wrapper around the routed screens. Re-keyed on every route change so the
+   enter animation replays. Keeps the 100% height chain intact for screens
+   whose layout (footer pinning, the Leaflet map) relies on it. */
+.screen-transition {
+  height: 100%;
+  animation: screen-enter 260ms ease both;
+}
+@keyframes screen-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen-transition {
+    animation: none;
+  }
+}
+
 /* ---- Screen layout ---- */
 .screen {
   min-height: 100%;

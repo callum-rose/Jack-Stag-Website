@@ -39,21 +39,27 @@ function PhaseGate() {
 }
 
 function AppRoutes() {
+  const location = useLocation();
   return (
     <>
       <PhaseGate />
-      <Routes>
-        <Route path="/" element={<SetupScreen />} />
-        <Route path="/ready" element={<ReadyScreen />} />
-        <Route path="/hunt" element={<HuntScreen />} />
-        <Route path="/arrival" element={<ArrivalScreen />} />
-        <Route path="/challenge" element={<ChallengeScreen />} />
-        <Route path="/victory" element={<VictoryScreen />} />
-        <Route path="/stats" element={<StatsScreen />} />
-        <Route path="/cheatsheet" element={<CheatSheetScreen />} />
-        {/* Unknown paths fall through to setup; PhaseGate then corrects. */}
-        <Route path="*" element={<SetupScreen />} />
-      </Routes>
+      {/* Keyed wrapper replays the enter animation on every route change.
+          The animation reverts to no transform at rest, so it never becomes a
+          containing block for the fixed-position dialogs the screens render. */}
+      <div className="screen-transition" key={location.pathname}>
+        <Routes location={location}>
+          <Route path="/" element={<SetupScreen />} />
+          <Route path="/ready" element={<ReadyScreen />} />
+          <Route path="/hunt" element={<HuntScreen />} />
+          <Route path="/arrival" element={<ArrivalScreen />} />
+          <Route path="/challenge" element={<ChallengeScreen />} />
+          <Route path="/victory" element={<VictoryScreen />} />
+          <Route path="/stats" element={<StatsScreen />} />
+          <Route path="/cheatsheet" element={<CheatSheetScreen />} />
+          {/* Unknown paths fall through to setup; PhaseGate then corrects. */}
+          <Route path="*" element={<SetupScreen />} />
+        </Routes>
+      </div>
     </>
   );
 }
