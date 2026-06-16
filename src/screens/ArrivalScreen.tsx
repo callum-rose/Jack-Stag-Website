@@ -38,7 +38,14 @@ export function ArrivalScreen() {
 
   const openDirections = () => {
     if (!pending) return;
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${pending.lat},${pending.lng}&travelmode=walking`;
+    const { lat, lng } = pending;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const url = isIOS
+      ? `maps://?daddr=${lat},${lng}&dirflg=w`
+      : isAndroid
+        ? `geo:${lat},${lng}?q=${lat},${lng}`
+        : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`;
     window.open(url, '_blank');
   };
 
