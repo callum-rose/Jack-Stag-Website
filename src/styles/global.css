@@ -385,6 +385,34 @@ button {
   flex: 0 0 auto;
 }
 
+/* Current straight-line distance to the pub on the arrival screen. */
+.pub-distance {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Single-pub preview map on the arrival screen. */
+.pub-minimap {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(180px, 30vh, 280px);
+  padding: 0;
+  border: 2px solid var(--color-surface-raised);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--color-surface);
+}
+.pub-minimap__map {
+  width: 100%;
+  height: 100%;
+  /* Map is decorative — taps fall through to the wrapping button. */
+  pointer-events: none;
+}
+
 /* Leaflet divIcon markers. */
 .pub-pin {
   display: flex;
