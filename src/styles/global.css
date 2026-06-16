@@ -118,6 +118,14 @@ button {
   text-transform: uppercase;
   color: var(--color-primary);
 }
+.app-header__timer {
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
 .app-header__right {
   display: flex;
   align-items: center;
