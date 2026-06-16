@@ -42,7 +42,6 @@ export function StatsScreen() {
   return (
     <Screen
       title={copy.stats.heading}
-      subtitle={state.team ? state.team.name : undefined}
       footer={
         <>
           <BigButton variant="secondary" onClick={() => navigate(-1)}>

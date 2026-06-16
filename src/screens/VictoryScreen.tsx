@@ -41,7 +41,6 @@ export function VictoryScreen() {
   return (
     <Screen
       title={copy.victory.heading}
-      subtitle={state.team ? state.team.name : undefined}
       footer={
         <>
           <BigButton variant="success" onClick={share}>
