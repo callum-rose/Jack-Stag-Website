@@ -4,7 +4,9 @@ import { useGame } from '../state/GameContext';
 import { isPubCompleted } from '../state/gameReducer';
 import { useNearestPub } from '../hooks/useNearestPub';
 import { useGeolocation } from '../hooks/useGeolocation';
+import { haversineM } from '../lib/geo';
 import { BigButton } from '../components/ui/BigButton';
+import { PubMiniMap } from '../components/Map/PubMiniMap';
 import { Screen } from '../components/ui/Screen';
 import { AlreadySearchedScreen } from './AlreadySearchedScreen';
 
@@ -18,6 +20,11 @@ export function ArrivalScreen() {
   const pending = state.pendingPubId
     ? (pubs.find((p) => p.id === state.pendingPubId) ?? null)
     : (nearest?.pub ?? null);
+
+  const distanceKm =
+    last && pending
+      ? haversineM(last.lat, last.lng, pending.lat, pending.lng) / 1000
+      : null;
 
   const confirm = () => {
     void sample();
@@ -59,6 +66,12 @@ export function ArrivalScreen() {
     >
       {pending && (
         <>
+          {distanceKm !== null && (
+            <p className="muted text-center pub-distance">
+              {distanceKm.toFixed(1)} km away
+            </p>
+          )}
+          <PubMiniMap pub={pending} onClick={openDirections} />
           <BigButton variant="secondary" onClick={openDirections}>
             Get Directions
           </BigButton>
