@@ -5,7 +5,7 @@ import { useGame } from '../state/GameContext';
 import { BigButton } from '../components/ui/BigButton';
 import { Screen } from '../components/ui/Screen';
 
-const ORGANISER_TAPS = 7;
+const ORGANISER_TAPS = 3;
 const TAP_RESET_MS = 2000;
 
 export function SetupScreen() {
