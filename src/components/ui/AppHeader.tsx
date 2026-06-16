@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { copy } from '../../config/app.config';
 import { useGame } from '../../state/GameContext';
 import { phaseOrder } from '../../state/routes';
+import { totalTimeMs } from '../../state/selectors';
+import { formatDuration } from '../../lib/time';
 
 const ORGANISER_TAPS = 3;
 const TAP_RESET_MS = 2000;
@@ -19,6 +21,15 @@ export function AppHeader() {
   const teamName = state.team?.name;
   const tapCount = useRef(0);
   const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    if (state.startedAt === null || state.finishedAt !== null) return;
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, [state.startedAt, state.finishedAt]);
+
+  const elapsedMs = state.startedAt !== null ? totalTimeMs(state, now) : null;
 
   const handleTitleTap = () => {
     if (tapTimer.current) clearTimeout(tapTimer.current);
@@ -42,6 +53,9 @@ export function AppHeader() {
         <span className="app-header__title" onClick={handleTitleTap}>
           {copy.appTitle}
         </span>
+        {elapsedMs !== null && (
+          <span className="app-header__timer">{formatDuration(elapsedMs)}</span>
+        )}
         <div className="app-header__right">
           {showRulesButton && (
             <button
