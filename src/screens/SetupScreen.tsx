@@ -25,7 +25,7 @@ export function SetupScreen() {
             {copy.setup.cta}
           </BigButton>
           <div className="link-row">
-            <Link to="/cheatsheet">Organiser</Link>
+            <Link to="/cheatsheet">{copy.setup.organiserLink}</Link>
           </div>
         </>
       }
