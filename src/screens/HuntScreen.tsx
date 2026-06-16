@@ -82,11 +82,11 @@ export function HuntScreen() {
       </div>
 
       <footer className="screen__footer">
-        <BigButton variant="success" onClick={() => setConfirmFound(true)}>
-          {copy.hunt.foundCta}
-        </BigButton>
         <BigButton variant="primary" onClick={() => navigate('/stats')}>
           {copy.hunt.statsLink}
+        </BigButton>
+        <BigButton variant="success" onClick={() => setConfirmFound(true)}>
+          {copy.hunt.foundCta}
         </BigButton>
       </footer>
 

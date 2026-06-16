@@ -64,7 +64,7 @@ export const copy = {
     body: 'Pick a pub to search. The stag is hiding in one of them.',
     pickPrompt: 'Choose a pub to search',
     foundCta: 'We found him! 🎉',
-    statsLink: 'Progress',
+    statsLink: 'See Your Progress',
     allSearchedNotice:
       "You've searched every pub — he must be in one you've been to. Time for the WhatsApp clues!",
     foundConfirm: 'Found the stag? This ends the game and stamps your finish time.',
