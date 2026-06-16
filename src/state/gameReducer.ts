@@ -38,7 +38,14 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case 'SET_TEAM_NAME': {
       const name = action.name.trim();
       if (!name) return state;
-      return { ...state, team: { name }, phase: 'rules' };
+      // Naming the team during setup advances to the rules screen. If the team
+      // navigates back to rename later, keep the current phase rather than
+      // regressing.
+      return {
+        ...state,
+        team: { name },
+        phase: state.phase === 'setup' ? 'rules' : state.phase,
+      };
     }
 
     case 'ACCEPT_RULES': {
@@ -133,6 +140,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case 'FOUND_STAG': {
       if (state.phase === 'found') return state;
       return { ...state, phase: 'found', finishedAt: action.at };
+    }
+
+    case 'RESUME_HUNT': {
+      if (state.phase !== 'found') return state;
+      return { ...state, phase: 'hunting', finishedAt: null };
     }
 
     case 'PUSH_BREADCRUMB': {

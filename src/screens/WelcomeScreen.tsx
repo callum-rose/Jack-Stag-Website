@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { copy } from '../config/app.config';
 import { useGame } from '../state/GameContext';
 import { BigButton } from '../components/ui/BigButton';
@@ -10,16 +9,11 @@ export function WelcomeScreen() {
   return (
     <Screen
       title={copy.welcome.heading}
-      subtitle={copy.appTitle}
+      subtitle={copy.tagline}
       footer={
-        <>
-          <BigButton onClick={() => dispatch({ type: 'BEGIN' })}>
-            {copy.welcome.cta}
-          </BigButton>
-          <div className="link-row">
-            <Link to="/cheatsheet">Organiser</Link>
-          </div>
-        </>
+        <BigButton onClick={() => dispatch({ type: 'BEGIN' })}>
+          {copy.welcome.cta}
+        </BigButton>
       }
     >
       <p>{copy.welcome.body}</p>

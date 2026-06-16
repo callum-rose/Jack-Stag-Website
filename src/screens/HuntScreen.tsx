@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { copy } from '../config/app.config';
 import { pubs } from '../config/data';
 import { useGame } from '../state/GameContext';
@@ -15,6 +15,7 @@ import { AlreadySearchedScreen } from './AlreadySearchedScreen';
 
 export function HuntScreen() {
   const { state, dispatch } = useGame();
+  const navigate = useNavigate();
   // Mount the geolocation controller so polling runs while hunting.
   useGeolocation();
 
@@ -76,10 +77,7 @@ export function HuntScreen() {
         />
 
         {allSearched && (
-          <p className="notice">
-            You've searched every pub — he must be in one you've been to. Time
-            for the WhatsApp clues!
-          </p>
+          <p className="notice">{copy.hunt.allSearchedNotice}</p>
         )}
       </div>
 
@@ -87,16 +85,16 @@ export function HuntScreen() {
         <BigButton variant="success" onClick={() => setConfirmFound(true)}>
           {copy.hunt.foundCta}
         </BigButton>
-        <div className="link-row">
-          <Link to="/stats">Stats</Link>
-        </div>
+        <BigButton variant="primary" onClick={() => navigate('/stats')}>
+          {copy.hunt.statsLink}
+        </BigButton>
       </footer>
 
       {confirmFound && (
         <ConfirmDialog
-          message="Found the stag? This ends the game and stamps your finish time."
-          confirmLabel="Yes, we found him!"
-          cancelLabel="Not yet"
+          message={copy.hunt.foundConfirm}
+          confirmLabel={copy.hunt.foundConfirmCta}
+          cancelLabel={copy.hunt.foundConfirmCancel}
           onConfirm={() => {
             setConfirmFound(false);
             dispatch({ type: 'FOUND_STAG', at: Date.now() });

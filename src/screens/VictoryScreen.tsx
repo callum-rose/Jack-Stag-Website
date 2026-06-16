@@ -16,7 +16,7 @@ import { Screen } from '../components/ui/Screen';
 import { Stat } from '../components/ui/Stat';
 
 export function VictoryScreen() {
-  const { state } = useGame();
+  const { state, dispatch } = useGame();
   // Finish time is fixed, so compute against finishedAt (totalTimeMs uses it).
   const now = state.finishedAt ?? Date.now();
 
@@ -48,33 +48,29 @@ export function VictoryScreen() {
             {shared ? copy.victory.shareCopied : copy.victory.shareCta}
           </BigButton>
           <div className="link-row">
-            <Link to="/stats">Full stats</Link>
+            <Link to="/stats">{copy.victory.statsLink}</Link>
+            <button
+              className="link-button"
+              onClick={() => dispatch({ type: 'RESUME_HUNT' })}
+            >
+              {copy.victory.resumeHuntCta}
+            </button>
           </div>
         </>
       }
     >
       <div className="stat-grid">
-        <Stat value={formatDuration(totalTimeMs(state, now))} label="Total time" />
-        <Stat value={String(visits.length)} label="Pubs searched" />
+        <Stat value={formatDuration(totalTimeMs(state, now))} label={copy.statLabels.totalTime} />
+        <Stat value={String(visits.length)} label={copy.statLabels.pubsSearched} />
         <Stat
           value={formatDistance(approxDistanceM(state))}
-          label="Approx distance"
-        />
-        <Stat
-          value={
-            state.breadcrumbs.length > 0
-              ? `±${Math.round(
-                  state.breadcrumbs[state.breadcrumbs.length - 1].acc ?? 0,
-                )}m`
-              : '—'
-          }
-          label="Last GPS accuracy"
+          label={copy.statLabels.approxDistance}
         />
       </div>
 
       {visits.length > 0 && (
         <div>
-          <h2>Your route</h2>
+          <h2>{copy.victory.routeHeading}</h2>
           <ol className="cheat-list">
             {visits.map((v) => (
               <li key={`${v.pubId}-${v.arrivedAt}`}>
