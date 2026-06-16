@@ -150,8 +150,11 @@ button {
 }
 .app-header__team {
   min-width: 0;
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
   white-space: nowrap;
   overflow: hidden;

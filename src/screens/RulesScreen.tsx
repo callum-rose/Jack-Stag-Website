@@ -13,7 +13,6 @@ export function RulesScreen() {
   return (
     <Screen
       title={copy.rulesScreen.heading}
-      subtitle={state.team ? `Team: ${state.team.name}` : undefined}
       footer={
         fromNav ? (
           <BigButton onClick={() => navigate(fromNav)}>
