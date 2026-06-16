@@ -285,33 +285,43 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  /* Extra horizontal padding keeps content clear of the slanted edges. */
+  padding: var(--space-3) calc(var(--space-4) + var(--slant));
   text-align: left;
-  background: var(--color-surface);
+  background: var(--color-surface-raised);
   color: var(--color-text);
-  border: 2px solid var(--color-border);
-  border-left: 5px solid var(--color-border);
+  border: none;
   border-radius: var(--radius-md);
+  /* Angular: slanted rectangle (parallelogram), matching buttons and stats. */
+  clip-path: polygon(
+    var(--slant) 0,
+    100% 0,
+    calc(100% - var(--slant)) 100%,
+    0 100%
+  );
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: border-color 0.1s ease, filter 0.1s ease;
+  transition: filter 0.1s ease, transform 0.05s ease;
 }
 .pub-list__item:active {
-  filter: brightness(1.15);
+  filter: brightness(1.12);
+  transform: translateY(1px);
+}
+.pub-list__item:disabled {
+  cursor: default;
 }
 .pub-list__item--visited {
-  opacity: 0.5;
-  border-left-color: var(--color-pub-visited);
+  opacity: 0.45;
+  background: var(--color-surface);
 }
 .pub-list__item--suggested {
-  border-color: var(--color-primary);
-  border-left-width: 5px;
   background: linear-gradient(
     90deg,
-    rgba(240, 200, 57, 0.12),
-    var(--color-surface) 60%
+    var(--color-primary),
+    var(--color-accent)
   );
+  color: var(--color-primary-text);
 }
 .pub-list__name {
   display: flex;
@@ -325,11 +335,25 @@ button {
   font-style: italic;
   color: var(--color-text-muted);
 }
+.pub-list__item--suggested .pub-list__phonetic {
+  color: rgba(8, 7, 5, 0.7);
+}
 .pub-list__badge {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--color-text-muted);
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 400; /* Titan One ships a single weight. */
+  letter-spacing: 0.02em;
+  padding: 3px 12px;
+  color: var(--color-primary);
+  background: var(--color-bg);
+  /* Small matching slant on the badge chip. */
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
   white-space: nowrap;
+}
+/* No distance/status yet — don't render an empty chip. */
+.pub-list__badge:empty {
+  display: none;
 }
 .phonetic {
   font-style: italic;
