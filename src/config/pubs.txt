@@ -3,9 +3,10 @@
 #   https://www.google.com/maps/place/Name/@50.08,14.42,17z
 # A "maps.app.goo.gl/..." Share-button short link CANNOT be read and will be
 # skipped (the app needs the name + lat,lng that only the full URL contains).
+# Optionally add a pronunciation guide after a " | " (e.g. ... | loch PIV-o-var).
 https://www.google.com/maps/place/Waxy+Malone's/@50.0883134,14.4216625,17z
 https://www.google.com/maps/place/McCarthy's+Irish+Pub/@50.0841848,14.4213459,17z
 https://www.google.com/maps/place/Beer+Point+:+Craft+Beer+Pub/@50.0788763,14.4295885,17z
-https://www.google.com/maps/place/Bar+U+Kl%C3%AD%C4%8D%C5%AF/@50.0866684,14.4047887,17z
+https://www.google.com/maps/place/Bar+U+Kl%C3%AD%C4%8D%C5%AF/@50.0866684,14.4047887,17z | bar oo KLEE-choo
 https://www.google.com/maps/place/NAPA+bar+and+gallery/@50.0867889,14.404391,17z
-https://www.google.com/maps/place/Lo%C4%8F+Pivovar/@50.0934837,14.4266012,17z
+https://www.google.com/maps/place/Lo%C4%8F+Pivovar/@50.0934837,14.4266012,17z | loch PIV-o-var

@@ -17,7 +17,13 @@ function contentLines(txt: string): string[] {
 
 function parsePubs(txt: string): Pub[] {
   const pubs: Pub[] = [];
-  for (const url of contentLines(txt)) {
+  for (const line of contentLines(txt)) {
+    // Optional reader-friendly pronunciation after a ' | ' separator.
+    const sep = line.indexOf(' | ');
+    const url = sep === -1 ? line : line.slice(0, sep);
+    const phonetic =
+      sep === -1 ? undefined : line.slice(sep + 3).trim() || undefined;
+
     const match = url.match(/\/maps\/place\/([^/@]+)\/@([-\d.]+),([-\d.]+)/);
     if (!match) {
       console.warn(
@@ -33,6 +39,7 @@ function parsePubs(txt: string): Pub[] {
       name: decodeURIComponent(nameEncoded.replace(/\+/g, ' ')),
       lat: Number(lat),
       lng: Number(lng),
+      phonetic,
     });
   }
   return pubs.sort((a, b) => a.name.localeCompare(b.name));
