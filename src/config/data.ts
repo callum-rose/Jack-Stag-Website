@@ -1,6 +1,6 @@
 import type { Challenge, Pub } from '../types';
-import pubsTxt from '../../pubs.txt?raw';
-import challengesTxt from '../../challenges.txt?raw';
+import pubsTxt from './pubs.txt?raw';
+import challengesTxt from './challenges.txt?raw';
 
 function parsePubs(txt: string): Pub[] {
   return txt
