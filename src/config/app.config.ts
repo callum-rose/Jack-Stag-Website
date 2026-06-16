@@ -108,8 +108,7 @@ export const copy = {
   },
   stats: {
     heading: 'Your hunt',
-    distanceDisclaimer: 'Distance is approximate (rough GPS).',
-    resetCta: 'Reset game',
+resetCta: 'Reset game',
     resetConfirm:
       'This wipes your team, progress and trail. This cannot be undone. Reset?',
     resetConfirmCta: 'Yes, wipe everything',
@@ -157,7 +156,6 @@ export const copy = {
     totalTime: 'Total time',
     pubsSearched: 'Pubs searched',
     approxDistance: 'Approx distance',
-    gpsSamples: 'GPS samples',
   },
 
   rules: [
