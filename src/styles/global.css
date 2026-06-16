@@ -125,6 +125,12 @@ button {
   letter-spacing: 0.04em;
   color: var(--color-primary);
   white-space: nowrap;
+  /* Reserve a fixed footprint so a changing value (e.g. "59m 59s" vs "1h 23m")
+     can never resize the element and shift the surrounding navbar layout. */
+  display: inline-block;
+  flex: none;
+  width: 5em;
+  text-align: center;
 }
 .app-header__right {
   display: flex;
