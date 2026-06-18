@@ -42,7 +42,7 @@ export const copy = {
     tagline: "Find Jack before the beer runs out.",
 
     welcome: {
-        heading: "Welcome to Jack's game of Ou Est le Poulet",
+        heading: "Welcome to Jack's Ou Est le Poulet",
         body: "Jack is hiding in one of Prague's finest pubs. Round up your team, sink a few, and track him down.",
         cta: "Let's go",
         photoAlt: 'Jack',
@@ -61,9 +61,7 @@ export const copy = {
         heading: 'Ready to hunt?',
         body: "Don't tap Ready until everybody is ready.",
         cta: "Ready!",
-        // Shown before the browser's location permission prompt to explain why.
-        locationExplainer:
-            "We use your location to show you on the map and measure how close you are to each pub. Your next tap will ask for permission — please allow it.",
+        locationExplainer: "Give your location please. Your next tap will ask for permission.",
         locationExplainerCta: 'Got it',
         locationExplainerCancel: 'Skip for now',
     },
@@ -72,7 +70,7 @@ export const copy = {
         pickPrompt: 'Choose a pub to search',
         foundCta: 'We found him! 🎉',
         statsLink: 'See Your Progress',
-        allSearchedNotice: "You've searched every pub — he must be in one you've been to. Time for the WhatsApp clues!",
+        allSearchedNotice: "You've searched every pub — he must be in one you've been to.",
         foundConfirm: 'Found Jack? This ends the game and stamps your finish time.',
         foundConfirmCta: 'Yes, we found him!',
         foundConfirmCancel: 'Not yet',
@@ -174,9 +172,11 @@ export const copy = {
     rules: [
         'Jack is hiding in one of the pubs on the list.',
         'Pick a pub, then complete the challenge on your way there.',
-        'Jack judges challenges over WhatsApp.',
-        'Once a challenge is complete you can move on to the next pub.',
-        'First team to find Jack wins.',
-        'Let\'s not be a bunch of shitheads, rep England!'
+        'WhatsApp your answer to Jack. He must approve.',
+        "Once you've completed the challenge you can go into the pub where there will be another.",
+        "Complete the new challenge before you leave the pub.",
+        "Walk. Challenge. Pub. Challenge. Repeat",
+        "First team to find Jack's pub wins.",
+        "Don't be annoying. Rep England!"
     ],
 } as const;
