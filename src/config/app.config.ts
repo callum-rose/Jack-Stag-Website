@@ -5,13 +5,13 @@
 export const appConfig = {
     /** Persisted localStorage key. Bump the suffix only via schemaVersion. */
     storageKey: 'stag-hunt:v1',
-    schemaVersion: 2,
+    schemaVersion: 3,
 
     /** Loop back to challenge #1 when the list is exhausted. */
     loopChallenges: false,
 
     /** Hand out a travel challenge on the opening leg (start → first pub). */
-    travelChallengeOnFirstLeg: false,
+    travelChallengeOnFirstLeg: true,
 
     /** Light foreground GPS polling cadence. */
     pollIntervalMs: 60_000,
@@ -100,7 +100,6 @@ export const copy = {
     },
     challenge: {
         heading: 'Your challenge',
-        introSubtitle: 'Before you set off',
         completedCta: 'Challenge completed',
         noneLeft: "You've finished every challenge — nice work. Keep hunting, no challenge this round.",
         approvalConfirm: 'Confirm that Jack has approved this?',
@@ -129,7 +128,6 @@ export const copy = {
         nextChallengeMessage: 'Get to the next pub for your next challenge.',
         allChallengesDone: "You've completed every challenge — nice work! Now just find Jack.",
         finishedMessage: 'Hunt complete — you tracked Jack down. 🍻',
-        introStopLabel: 'Before you set off',
         noChallengeLabel: 'No challenge this round',
         travelStopLabel: 'On the way',
     },
@@ -171,7 +169,7 @@ export const copy = {
     rules: [
         'Jack is hiding in one of the pubs on the list.',
         'Don\'t press Ready until everyone is ready.',
-        'First, we\'ll complete the first challenge.',
+        'Pick a pub, then complete the challenge on your way there.',
         'Jack judges challenges over WhatsApp.',
         'Once a challenge is complete you can move on to the next pub.',
         'First team to find Jack wins.',

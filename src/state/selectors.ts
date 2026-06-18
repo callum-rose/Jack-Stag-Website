@@ -2,12 +2,6 @@ import { trailDistanceM } from '../lib/geo';
 import { challenges, travelChallenges } from '../config/data';
 import type { GameState, Visit } from '../types';
 
-/**
- * The intro challenge is always the first in the list (the cursor starts at 0),
- * but its index is cleared from state once completed, so we re-derive it here.
- */
-const INTRO_CHALLENGE_INDEX = 0;
-
 /** Set of pub ids the team has fully searched (completed a challenge at). */
 export function visitedPubIds(state: GameState): Set<string> {
   const ids = new Set<string>();
@@ -27,11 +21,6 @@ export function pubsVisitedCount(state: GameState): number {
   return visitedPubIds(state).size;
 }
 
-/** True once the pre-hunt intro challenge has been shown and completed. */
-export function introChallengeDone(state: GameState): boolean {
-  return state.startedAt !== null && state.introChallengeIndex === null;
-}
-
 /** Whether an index points at a real (non-exhausted) entry in a list of `len`. */
 function inRange(index: number | null | undefined, len: number): index is number {
   return index !== null && index !== undefined && index >= 0 && index < len;
@@ -43,8 +32,8 @@ function isRealChallenge(index: number | null | undefined): index is number {
 }
 
 /**
- * Challenge completion progress across both lists: pub challenges (incl. the
- * intro) and travel challenges share one unified "done of total" count.
+ * Challenge completion progress across both lists: pub challenges and travel
+ * challenges share one unified "done of total" count.
  */
 export function challengeProgress(state: GameState): {
   done: number;
@@ -53,7 +42,7 @@ export function challengeProgress(state: GameState): {
 } {
   const total = challenges.length + travelChallenges.length;
 
-  let pubDone = introChallengeDone(state) ? 1 : 0;
+  let pubDone = 0;
   for (const v of completedVisits(state)) {
     if (isRealChallenge(v.challengeIndex)) pubDone += 1;
   }
@@ -75,8 +64,8 @@ export function challengeProgress(state: GameState): {
 /** A single stop on the unified progress timeline. */
 export interface ProgressStop {
   /** Which list this stop's challenge index refers to / how to label it. */
-  kind: 'intro' | 'pub' | 'travel';
-  /** Null for intro and travel stops, which have no pub. */
+  kind: 'pub' | 'travel';
+  /** Null for travel stops, which have no pub. */
   pubId: string | null;
   /** Null when this stop handed out no challenge (list exhausted). */
   challengeIndex: number | null;
@@ -86,22 +75,11 @@ export interface ProgressStop {
 
 /**
  * The team's route as an ordered timeline, interleaving travel and pub stops by
- * time: intro → travel → pub → travel → pub → … . Out-of-range challenge indices
+ * time: travel → pub → travel → pub → … . Out-of-range challenge indices
  * become null so callers can render the stop without a challenge.
  */
 export function progressTimeline(state: GameState): ProgressStop[] {
   const stops: ProgressStop[] = [];
-  if (introChallengeDone(state)) {
-    stops.push({
-      kind: 'intro',
-      pubId: null,
-      challengeIndex: isRealChallenge(INTRO_CHALLENGE_INDEX)
-        ? INTRO_CHALLENGE_INDEX
-        : null,
-      arrivedAt: state.startedAt,
-      completedAt: state.startedAt,
-    });
-  }
   for (const v of completedVisits(state)) {
     stops.push({
       kind: 'pub',
@@ -126,8 +104,7 @@ export function progressTimeline(state: GameState): ProgressStop[] {
   // Order by departure/arrival time; on a tie (a travel challenge confirmed at
   // the moment of arrival) the travel stop sorts before the pub it preceded.
   const startOf = (s: ProgressStop) => s.arrivedAt ?? s.completedAt ?? 0;
-  const rankOf = (k: ProgressStop['kind']) =>
-    k === 'intro' ? 0 : k === 'travel' ? 1 : 2;
+  const rankOf = (k: ProgressStop['kind']) => (k === 'travel' ? 0 : 1);
   stops.sort(
     (a, b) => startOf(a) - startOf(b) || rankOf(a.kind) - rankOf(b.kind),
   );
