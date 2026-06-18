@@ -12,7 +12,6 @@ export const initialState: GameState = {
   challengeCursor: 0,
   travelVisits: [],
   travelCursor: 0,
-  introChallengeIndex: null,
   pendingPubId: null,
   breadcrumbs: [],
   geo: { status: 'unknown', last: null },
@@ -113,19 +112,13 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'START_GAME': {
       if (state.phase !== 'ready') return state;
-      // Start the clock and drop straight into an opening challenge (no pub).
-      // It consumes the cursor, so the first pub gets the next challenge. When
-      // not looping, the cursor passes straight through: once it runs past the
-      // list the index is out of range and no challenge is shown.
-      const introChallengeIndex = action.loop
-        ? state.challengeCursor % action.challengeCount
-        : state.challengeCursor;
+      // Start the clock and drop the team straight onto the hunt screen so they
+      // pick their first pub. The opening challenge then happens on the way
+      // there as that leg's travel challenge — no separate pre-hunt challenge.
       return {
         ...state,
-        phase: 'challenge',
+        phase: 'hunting',
         startedAt: action.at,
-        introChallengeIndex,
-        challengeCursor: state.challengeCursor + 1,
       };
     }
 
@@ -268,7 +261,6 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         ...state,
         phase: 'hunting',
         pendingPubId: null,
-        introChallengeIndex: null,
         visits,
       };
     }

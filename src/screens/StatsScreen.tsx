@@ -151,9 +151,7 @@ export function StatsScreen() {
                 const name =
                   stop.kind === 'pub'
                     ? pubs.find((p) => p.id === stop.pubId)?.name ?? stop.pubId
-                    : stop.kind === 'travel'
-                      ? copy.stats.travelStopLabel
-                      : copy.stats.introStopLabel;
+                    : copy.stats.travelStopLabel;
                 const list =
                   stop.kind === 'travel' ? travelChallenges : challenges;
                 const challenge =

@@ -12,12 +12,10 @@ export function ChallengeScreen() {
   const { sample } = useGeolocation();
   const [confirming, setConfirming] = useState(false);
 
-  // A challenge comes either from the open pub visit (the last one without a
-  // completion stamp) or, before any pub, from the opening "intro" challenge.
+  // The challenge comes from the open pub visit — the last one without a
+  // completion stamp.
   const openVisit = [...state.visits].reverse().find((v) => v.completedAt === null);
-  const challengeIndex = openVisit
-    ? openVisit.challengeIndex
-    : state.introChallengeIndex;
+  const challengeIndex = openVisit ? openVisit.challengeIndex : null;
   const pub = openVisit ? pubs.find((p) => p.id === openVisit.pubId) : undefined;
   const challenge =
     challengeIndex !== null && challengeIndex !== undefined && challenges.length > 0
@@ -32,7 +30,7 @@ export function ChallengeScreen() {
   return (
     <Screen
       title={copy.challenge.heading}
-      subtitle={pub ? `At ${pub.name}` : copy.challenge.introSubtitle}
+      subtitle={pub ? `At ${pub.name}` : undefined}
       footer={
         <BigButton variant="success" onClick={() => setConfirming(true)}>
           {copy.challenge.completedCta}
