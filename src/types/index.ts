@@ -62,8 +62,6 @@ export interface GameState {
   challengeCursor: number; // next challenge index to hand out
   travelVisits: TravelVisit[]; // ordered by departure
   travelCursor: number; // next travel-challenge index to hand out
-  /** Challenge shown before the hunt begins (no pub). Null once completed. */
-  introChallengeIndex: number | null;
   pendingPubId: string | null; // pub awaiting arrival confirmation
   breadcrumbs: Breadcrumb[]; // capped (see persistence)
   geo: {
@@ -76,7 +74,7 @@ export type GameAction =
   | { type: 'BEGIN' }
   | { type: 'SET_TEAM_NAME'; name: string }
   | { type: 'ACCEPT_RULES' }
-  | { type: 'START_GAME'; at: number; challengeCount: number; loop: boolean }
+  | { type: 'START_GAME'; at: number }
   | { type: 'ARRIVE_AT_PUB'; pubId: string; at: number }
   | { type: 'CONFIRM_PUB'; at: number; challengeCount: number; loop: boolean }
   | { type: 'CANCEL_ARRIVAL' }
