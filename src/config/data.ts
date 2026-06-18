@@ -57,7 +57,17 @@ function parseChallenges(txt: string): Challenge[] {
       );
       continue;
     }
-    out.push({ title: line.slice(0, sep), description: line.slice(sep + 3) });
+    const title = line.slice(0, sep);
+    const rest = line.slice(sep + 3);
+    // Optional image URL after a second ' | '. Only split it off when the
+    // trailing segment actually looks like an http(s) URL, so a description
+    // that happens to contain ' | ' isn't mistaken for an image.
+    const imgSep = rest.lastIndexOf(' | ');
+    const tail = imgSep === -1 ? '' : rest.slice(imgSep + 3).trim();
+    const hasImage = /^https?:\/\/\S+$/.test(tail);
+    const description = hasImage ? rest.slice(0, imgSep) : rest;
+    const imageUrl = hasImage ? tail : undefined;
+    out.push({ title, description, imageUrl });
   }
   return out;
 }

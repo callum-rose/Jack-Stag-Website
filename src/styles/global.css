@@ -256,6 +256,17 @@ button {
   flex-direction: column;
   gap: var(--space-3);
 }
+/* Optional challenge illustration. Grows to fill the space left below the
+   text and shrinks (min-height: 0) so the whole screen fits without scrolling;
+   object-fit keeps the aspect ratio and centres it within that box. */
+.challenge-image {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: var(--radius-md);
+}
 .muted {
   color: var(--color-text-muted);
 }

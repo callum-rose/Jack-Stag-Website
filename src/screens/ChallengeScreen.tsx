@@ -4,6 +4,8 @@ import { challenges, pubs } from '../config/data';
 import { useGame } from '../state/GameContext';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { BigButton } from '../components/ui/BigButton';
+import { ChallengeImage } from '../components/ui/ChallengeImage';
+import { Linkify } from '../components/ui/Linkify';
 import { ConfirmDialog } from '../components/ui/ConfirmDialog';
 import { Screen } from '../components/ui/Screen';
 
@@ -40,7 +42,10 @@ export function ChallengeScreen() {
       {challenge ? (
         <>
           <h2>{challenge.title}</h2>
-          <p>{challenge.description}</p>
+          <p><Linkify>{challenge.description}</Linkify></p>
+          {challenge.imageUrl && (
+            <ChallengeImage url={challenge.imageUrl} alt={challenge.title} />
+          )}
         </>
       ) : (
         <p className="notice">{copy.challenge.noneLeft}</p>

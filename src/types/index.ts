@@ -23,6 +23,8 @@ export interface Pub {
 export interface Challenge {
   title: string;
   description: string;
+  /** Optional illustration URL, loaded from the network, shown below the text. */
+  imageUrl?: string;
 }
 
 /** A single search of a pub, in arrival order. */
