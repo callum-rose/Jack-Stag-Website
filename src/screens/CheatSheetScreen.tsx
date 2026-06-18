@@ -2,6 +2,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { useNavigate } from 'react-router-dom';
 import { copy } from '../config/app.config';
 import { challenges, pubs, travelChallenges } from '../config/data';
+import { Linkify } from '../components/ui/Linkify';
 import { Screen } from '../components/ui/Screen';
 
 /** Player onboarding URL = app root (strip any #/cheatsheet hash). */
@@ -68,7 +69,7 @@ export function CheatSheetScreen() {
         <ol className="cheat-list">
           {challenges.map((c, i) => (
             <li key={i}>
-              <strong>{c.title}</strong> — {c.description}
+              <strong>{c.title}</strong> — <Linkify>{c.description}</Linkify>
             </li>
           ))}
         </ol>
@@ -79,7 +80,7 @@ export function CheatSheetScreen() {
         <ol className="cheat-list">
           {travelChallenges.map((c, i) => (
             <li key={i}>
-              <strong>{c.title}</strong> — {c.description}
+              <strong>{c.title}</strong> — <Linkify>{c.description}</Linkify>
             </li>
           ))}
         </ol>

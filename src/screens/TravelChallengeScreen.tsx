@@ -4,6 +4,8 @@ import { useGame } from '../state/GameContext';
 import { activeTravelVisit } from '../state/gameReducer';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { BigButton } from '../components/ui/BigButton';
+import { ChallengeImage } from '../components/ui/ChallengeImage';
+import { Linkify } from '../components/ui/Linkify';
 import { Screen } from '../components/ui/Screen';
 
 export function TravelChallengeScreen() {
@@ -53,7 +55,10 @@ export function TravelChallengeScreen() {
       {challenge ? (
         <>
           <h2>{challenge.title}</h2>
-          <p>{challenge.description}</p>
+          <p><Linkify>{challenge.description}</Linkify></p>
+          {challenge.imageUrl && (
+            <ChallengeImage url={challenge.imageUrl} alt={challenge.title} />
+          )}
         </>
       ) : (
         <p className="notice">{copy.travel.noneLeft}</p>

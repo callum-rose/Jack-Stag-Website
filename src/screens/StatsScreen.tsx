@@ -16,6 +16,7 @@ import { formatClock, formatDuration } from '../lib/time';
 import { buildShareText } from '../lib/summary';
 import { BigButton } from '../components/ui/BigButton';
 import { ConfirmDialog } from '../components/ui/ConfirmDialog';
+import { Linkify } from '../components/ui/Linkify';
 import { RouteMap } from '../components/Map/RouteMap';
 import { Screen } from '../components/ui/Screen';
 import { Stat } from '../components/ui/Stat';
@@ -180,7 +181,7 @@ export function StatsScreen() {
                       {challenge ? (
                         <div className="challenge-done">
                           <span className="challenge-done__title">{challenge.title}</span>
-                          <span className="challenge-done__desc">{challenge.description}</span>
+                          <span className="challenge-done__desc"><Linkify>{challenge.description}</Linkify></span>
                         </div>
                       ) : (
                         <div className="challenge-done challenge-done--none">

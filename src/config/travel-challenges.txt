@@ -1,6 +1,9 @@
 # Travel challenges — handed out one at a time when the team sets off for the
 # next pub, to be done on the walk. Same format as challenges.txt:
 #   Title | Description
+#   Title | Description | https://example.com/image.jpg   (optional image)
+# The optional third field is an image URL (must start with http/https); it is
+# shown below the description and sized to fit without scrolling.
 # Blank lines and lines starting with '#' are ignored. They are handed out in
 # order, top to bottom. Organiser: edit these freely.
 
