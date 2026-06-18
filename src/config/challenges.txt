@@ -4,8 +4,8 @@
 # The optional third field is an image URL (must start with http/https); it is
 # shown below the description and sized to fit without scrolling.
 # Blank lines and lines starting with '#' are ignored.
-Split the G | Split the G, or any other letter on the glass. Just split it real good.
-Awful Beer | Buy a pint of the worst beer in the pub. Tell Jack what you've bought and describe the taste poetically.
-Challenge | Take a picture of the weirdest thing inside the pub. Send it to Jack.
-You Gotta Give | Calico Cut Pants needs testimonials. Film yourself look at the camera while saying emphatically "You gotta give!!". Get some drips of water / beer on your trousers (https://getcalicocutpants.com/) | https://ithinkyoushouldquote.me/gottagivetransparent.png
+Split the G | Split the G, or any other letter on the glass. Just split it real good. | https://vinepair.com/wp-content/uploads/2024/09/can-you-split-the-g-social.jpg
+Awful Beer | Buy the most disgusting pint / drink in the pub. Tell Jack what you've bought and describe the taste. | https://assets.iceland.co.uk/i/iceland/Frosty_Jacks_25l_Original_Apple_Cider_77074.jpg
+Challenge | Take a picture of the weirdest thing inside the pub. Send it to Jack. | https://static.vecteezy.com/system/resources/previews/022/778/226/non_2x/brown-horse-galloping-in-the-field-illustration-ai-generative-free-photo.jpg
+You Gotta Give | Calico Cut Pants needs testimonials. Film yourself looking at the camera while saying emphatically "You gotta give!!". Get some drips of water / beer on your trousers (https://getcalicocutpants.com/) | https://ithinkyoushouldquote.me/gottagivetransparent.png
 Limerick | Write a limerick about the pub. Send Jack the photo of the pub and the limerick it inspired.
