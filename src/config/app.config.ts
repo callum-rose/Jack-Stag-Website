@@ -177,6 +177,7 @@ export const copy = {
         "Complete the new challenge before you leave the pub.",
         "Walk. Challenge. Pub. Challenge. Repeat",
         "First team to find Jack's pub wins.",
+        "Don't use Find My Friends.",
         "Don't be annoying. Rep England!"
     ],
 } as const;
